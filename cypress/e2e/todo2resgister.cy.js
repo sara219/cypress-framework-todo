@@ -3,8 +3,7 @@
 import { faker } from '@faker-js/faker'
 
 describe('Todo Test Cases', () => {
-  let accessToken = ''
-
+  let accessToken
   beforeEach(() => {
     cy.request({
       url: '/api/v1/users/register',
@@ -15,20 +14,22 @@ describe('Todo Test Cases', () => {
         email: faker.internet.email(),
         password: 'Test123!',
       },
+    }).then((res) => {
+      accessToken = res.body.access_token
     })
-    cy.visit('/')
   })
 
   // ==========
 
-  it.only('Should be able to add a todo', () => {
+  it('Should be able to add a todo', () => {
+    cy.visit('/')
     cy.get('[data-testid="add"]').click()
     cy.get('[data-testid="new-todo"]').type('Test')
     cy.get('[data-testid="submit-newTask"]').click()
   })
 
   // ==========
-  it('Should be able to mark as completed', () => {
+  it.only('Should be able to mark as completed', () => {
     const newTodo = {
       item: 'new test for add todo',
       isCompleted: false,
@@ -45,6 +46,7 @@ describe('Todo Test Cases', () => {
       expect(res.status).equal(201)
     })
 
+    cy.visit('/')
     cy.get('[data-testid="complete-task"]').eq(0).check()
     cy.get('[data-testid="complete-task"]').should('be.checked')
   })
