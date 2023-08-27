@@ -1,20 +1,11 @@
 /// <reference types="cypress" />
 
-import { faker } from '@faker-js/faker'
+import UserApi from '../api/user.api'
 
 describe('Todo Test Cases', () => {
   let accessToken
   beforeEach(() => {
-    cy.request({
-      url: '/api/v1/users/register',
-      method: 'POST',
-      body: {
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email(),
-        password: 'Test123!',
-      },
-    }).then((res) => {
+    UserApi.register().then((res) => {
       accessToken = res.body.access_token
     })
   })
