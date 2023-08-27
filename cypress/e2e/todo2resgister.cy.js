@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import TodoApi from '../api/todo.api'
 import UserApi from '../api/user.api'
 
 describe('Todo Test Cases', () => {
@@ -21,19 +22,7 @@ describe('Todo Test Cases', () => {
 
   // ==========
   it.only('Should be able to mark as completed', () => {
-    const newTodo = {
-      item: 'new test for add todo',
-      isCompleted: false,
-    }
-
-    cy.request({
-      url: '/api/v1/tasks',
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: newTodo,
-    }).then((res) => {
+    TodoApi.addTodo(accessToken).then((res) => {
       expect(res.status).equal(201)
     })
 
