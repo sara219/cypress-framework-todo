@@ -2,6 +2,8 @@
 
 import TodoApi from '../api/todo.api'
 import UserApi from '../api/user.api'
+import NewTodoPage from '../pages/newTodo.page'
+import TodoPage from '../pages/todo.page'
 
 describe('Todo Test Cases', () => {
   let accessToken
@@ -13,15 +15,18 @@ describe('Todo Test Cases', () => {
 
   // ==========
 
-  it('Should be able to add a todo', () => {
-    cy.visit('/')
-    cy.get('[data-testid="add"]').click()
-    cy.get('[data-testid="new-todo"]').type('Test')
-    cy.get('[data-testid="submit-newTask"]').click()
+  it.only('Should be able to add a todo', () => {
+    const todoPage = new TodoPage()
+
+    todoPage
+      .load()
+      .clickOnAddBtn()
+      .addNewTodo('Test')
+      .firstItemShouldHaveText('Test')
   })
 
   // ==========
-  it.only('Should be able to mark as completed', () => {
+  it('Should be able to mark as completed', () => {
     TodoApi.addTodo(accessToken).then((res) => {
       expect(res.status).equal(201)
     })
