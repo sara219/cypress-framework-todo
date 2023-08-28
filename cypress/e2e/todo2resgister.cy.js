@@ -6,6 +6,8 @@ import NewTodoPage from '../pages/newTodo.page'
 import TodoPage from '../pages/todo.page'
 
 describe('Todo Test Cases', () => {
+  const todoPage = new TodoPage()
+
   let accessToken
   beforeEach(() => {
     UserApi.register().then((res) => {
@@ -15,9 +17,7 @@ describe('Todo Test Cases', () => {
 
   // ==========
 
-  it.only('Should be able to add a todo', () => {
-    const todoPage = new TodoPage()
-
+  it('Should be able to add a todo', () => {
     todoPage
       .load()
       .clickOnAddBtn()
@@ -26,13 +26,10 @@ describe('Todo Test Cases', () => {
   })
 
   // ==========
-  it('Should be able to mark as completed', () => {
+  it.only('Should be able to mark as completed', () => {
     TodoApi.addTodo(accessToken).then((res) => {
       expect(res.status).equal(201)
     })
-
-    cy.visit('/')
-    cy.get('[data-testid="complete-task"]').eq(0).check()
-    cy.get('[data-testid="complete-task"]').should('be.checked')
+    todoPage.load().markTodoAsComplete().checkIfCompleted()
   })
 })
