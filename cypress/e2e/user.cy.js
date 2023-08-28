@@ -4,8 +4,8 @@ import LoginPage from '../pages/login.page'
 import TodoPage from '../pages/todo.page'
 
 it('Should be able to login', () => {
-  const validEmail = 'honem39976@trazeco.com'
-  const validPassword = 'Test123!'
+  const validEmail = Cypress.env('email')
+  const validPassword = Cypress.env('password')
 
   // obj from class
   const loginPage = new LoginPage()
