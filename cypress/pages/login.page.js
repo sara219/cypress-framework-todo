@@ -1,3 +1,5 @@
+import TodoPage from "./todo.page"
+
 class LoginPage {
   // locators = elements
   get emailInput() {
@@ -15,12 +17,14 @@ class LoginPage {
   // methods
   load() {
     cy.visit('/')
+    return this
   }
 
   performLogin(email, password) {
     this.emailInput.type(email)
     this.passInput.type(password)
     this.submit.click()
+    return new TodoPage()
   }
 }
 

@@ -9,12 +9,10 @@ it('Should be able to login', () => {
 
   // obj from class
   const loginPage = new LoginPage()
-  const todoPage = new TodoPage()
 
   // visit
-  loginPage.load()
-  // run login
-  loginPage.performLogin(validEmail, validPassword)
-
-  todoPage.welcomeMsgShouldBeVisible()
+  loginPage
+    .load()
+    .performLogin(validEmail, validPassword)
+    .welcomeMsgShouldBeVisible()
 })
