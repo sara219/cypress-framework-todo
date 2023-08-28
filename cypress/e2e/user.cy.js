@@ -1,11 +1,15 @@
 /// <reference types="cypress" />
 
-it('Should be able to login', () => {
-  cy.visit('/')
-  cy.get('[data-testid="email"]').type('honem39976@trazeco.com')
-  cy.get('[data-testid="password"]').type('Test123!')
+import LoginPage from '../pages/login.page'
 
-  cy.get('[data-testid="submit"]').click()
+it('Should be able to login', () => {
+  // obj from login class
+  const loginPage = new LoginPage()
+
+  // visit
+  loginPage.load()
+  // run login
+  loginPage.performLogin('honem39976@trazeco.com', 'Test123!')
 
   cy.get('[data-testid="welcome"]').should('be.visible')
 })
