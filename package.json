@@ -7,7 +7,8 @@
     "test:locally": "npx cypress run --e2e --config baseUrl=http://localhost:3000",
     "cy:run:chrome": "cypress run --browser chrome",
     "cy:run:firefox": "cypress run --browser firefox",
-    "cy:run:webkit": "cypress run --browser webkit"
+    "cy:run:webkit": "cypress run --browser webkit",
+    "cy:report": "npx cypress run --record --key bea24f7a-9ac9-4fbd-acd4-3762b53d63a4"
   },
   "keywords": [],
   "author": "",

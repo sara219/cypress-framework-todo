@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
+  projectId: 'sunkmi',
   e2e: {
     baseUrl: 'http://qacart-todo.herokuapp.com',
     viewportWidth: 1440,
