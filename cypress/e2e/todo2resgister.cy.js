@@ -17,7 +17,7 @@ describe('Todo Test Cases', () => {
 
   // ==========
 
-  it('Should be able to add a todo', () => {
+  it.only('Should be able to add a todo', () => {
     todoPage
       .load()
       .clickOnAddBtn()
@@ -26,7 +26,7 @@ describe('Todo Test Cases', () => {
   })
 
   // ==========
-  it.only('Should be able to mark as completed', () => {
+  it('Should be able to mark as completed', () => {
     TodoApi.addTodo(accessToken).then((res) => {
       expect(res.status).equal(201)
     })
