@@ -1,4 +1,4 @@
-import TodoPage from "./todo.page"
+import TodoPage from "../todo.page"
 
 class LoginPage {
   // locators = elements
