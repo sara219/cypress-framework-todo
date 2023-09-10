@@ -34,7 +34,7 @@ describe('Login Test Cases', () => {
 
   // !=====================================================
 
-  it.only('TC03: Login With invalid Email and valid Password ', () => {
+  it('TC03: Login With invalid Email and valid Password ', () => {
     const login = new LoginPage()
 
     cy.fixture('validUser').then((validData) => {
@@ -49,11 +49,13 @@ describe('Login Test Cases', () => {
 
   // !=====================================================
 
-  it.only('TC04: Login With invalid Email and invalid Password ', () => {
+  it('TC04: Login With invalid Email and invalid Password ', () => {
     const login = new LoginPage()
 
     cy.fixture('validUser').then((validData) => {
-      login.load().performLogin(faker.internet.email(), faker.internet.password())
+      login
+        .load()
+        .performLogin(faker.internet.email(), faker.internet.password())
 
       // assertions
       cy.get('[data-testid="error-alert"]')
